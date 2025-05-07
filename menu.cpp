@@ -2,6 +2,11 @@
 #include <conio.h>
 using namespace std;
 
+void info(){
+  system("cls");
+  cout<<"indonesia Hebat, Poliban Juara" << endl;
+  getch();
+}
 
 void dMenu(){
 system("cls");
@@ -12,13 +17,12 @@ cout<<"3. Menu Ketiga"<<"\n";
 cout<<"4. Menu Keempat"<<"\n";            
 cout<<"5. Exit"<<"\n";           
 cout<<"Masukan angka :";        
-
 }
 
 void mPertama(string pesan){
-system("cls");
-cout<<"hallo saya menu "<<pesan;
-getch();
+  system("cls");
+  cout<<"hallo saya menu "<< pesan << endl;
+  getch();
 }
 
 
@@ -43,13 +47,12 @@ do
     /* code */
     break;  
    case '4':
-    mPertama("ke- empat");
+    info();
     /* code */
     break;  
   case '5':
     /* code */
     break;
-  
   default:
     system("cls");
     cout<<"Pilihan Tidak Tersedia";
