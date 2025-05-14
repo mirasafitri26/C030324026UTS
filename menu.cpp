@@ -3,83 +3,72 @@
 using namespace std;
 
 const int MAX = 100;
-int arrayData[100];
-int jumlah = 0;
+int arr[MAX];
+int n = 0;
 
-void info(){
-  system("cls");
-  cout<<"hai, saya lagi UTS";
-  getch();
-}
 void dMenu(){
 system("cls");
-cout<<"Aplikasi Tampilan Menu"<<"\n";       
-cout<<"1. Memasukkan nilai Array"<<"\n";            
-cout<<"2. Menampilkan Array"<<"\n";            
-cout<<"3. Mennyortir Array"<<"\n";           
-cout<<"4. Info"<<"\n";            
+cout<<"Aplikasi Tampilan Menu"<<"\n";        
+cout<<"1. Input nilai ke Array"<<"\n";            
+cout<<"2. Output Array"<<"\n";            
+cout<<"3. Sortir Array"<<"\n";           
+cout<<"4. Informasi"<<"\n";            
 cout<<"5. Exit"<<"\n";           
 cout<<"Masukan angka :";        
 
 }
 
-void inputArray(){
+void input(){
   system("cls");
-  cout << "Berapa banyak data yang ingin dimasukkan? (max " << MAX << "): ";
-    cin >> jumlah;
+  cout << "Masukkan jumlah elemen array: ";
+    cin >> n;
+    if (n > MAX) {
+      cout << "Maksimum elemen adalah " << MAX << ".\n";
+      n = MAX;
+  }
+  for (int i = 0; i < n; i++) {
+      cout << "Elemen ke-" << i + 1 << ": ";
+      cin >> arr[i];
+  }
+  getch();
+  }
 
-    if (jumlah > MAX || jumlah < 1) {
-        cout << "Jumlah tidak valid!";
-        getch();
+  void output() {
+    if (n == 0) {
+        cout << "Array masih kosong!\n";
         return;
     }
-    for (int i = 0; i < jumlah; i++) {
-      cout << "Masukkan data ke-" << i + 1 << ": ";
-      cin >> arrayData[i];
-  }
-  cout << "Data berhasil disimpan!";
-  getch();
+    cout << "Isi Array: ";
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << "\n";
 }
 
-void tampilArray() {
+void bubbleSort() {
+    if (n == 0) {
+        cout << "Array masih kosong!\n";
+        return;
+    }
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                // Tukar elemen
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+  }
+
+void info(){
   system("cls");
-  if (jumlah == 0) {
-      cout << "Array masih kosong!";
-  } else {
-      cout << "Isi Array:\n";
-      for (int i = 0; i < jumlah; i++) {
-          cout << arrayData[i] << " ";
-      }
-  }
+  cout << "Program ini dibuat untuk demonstrasi menu dan bubble sort dalam C++.\n";
+  cout << "Fitur: input array, output array, dan pengurutan menggunakan Bubble Sort.\n";
   getch();
-}
-
-void sortArray() {
-  system("cls");
-  if (jumlah == 0) {
-      cout << "Array masih kosong!";
-  } else {
-      // Bubble Sort
-      for (int i = 0; i < jumlah - 1; i++) {
-          for (int j = 0; j < jumlah - i - 1; j++) {
-              if (arrayData[j] > arrayData[j + 1]) {
-                  int temp = arrayData[j];
-                  arrayData[j] = arrayData[j + 1];
-                  arrayData[j + 1] = temp;
-              }
-          }
-      }
-      cout << "Array berhasil diurutkan!";
   }
-  getch();
-}
 
-
-void mPertama(string pesan){
-system("cls");
-cout<<"hallo saya menu "<<pesan;
-getch();
-}
 
 
 int main() {
@@ -91,18 +80,15 @@ do
   switch (pl)
   {
    case '1':
-   inputArray();
     /* code */
-    mPertama("pertama");
+    input();
     break;
    case '2':
-   tampilArray();
-    mPertama("ke- dua");
+   output();
     /* code */ 
     break;  
    case '3':
-   sortArray();
-    mPertama("ke- tiga");
+   bubbleSort();
     /* code */
     break;  
    case '4':
